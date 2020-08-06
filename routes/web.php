@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome')->name('home');
-
-Route::livewire('/settings', 'account.edit')->layout('layouts.app', ['title' => 'Settings'])->name('settings');
+Route::get('timeline', 'TimelineController')->name('timeline');
+Route::livewire('/settings', 'account.edit')->layout('layouts.app', ['title' => 'Settings'])->name('settings')->middleware('auth');
 Route::livewire('/user/{identifier}', 'account.show')->layout('layouts.app')->name('account.show');
 
 Route::layout('layouts.auth')->group(function () {

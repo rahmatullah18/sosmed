@@ -26,11 +26,17 @@
                         <div class="text-red-500"><small>{{$message}}</small></div>
                         @enderror
                     </div>
-                    <div class="mb-5 flex justify-center">
-                        <button type="submit" class="flex justify-center md:w-1/2 w-full px-4 py-2 text-sm font-medium text-white bg-teal-600 border border-transparent rounded-md hover:bg-teal-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                            Update Profile
-                        </button>
+                    <div class="mb-5 ">
+                        <label for="description"  class="block mb-1 font-semibold">Biodata:</label>
+                        <textarea type="text" wire:model="description" id="description" class="appearance-none border-b-2  @error('description') border-red-600 focus:border-red-600 focus:bg-red-100  @else border-teal-700 focus:bg-gray-100 @enderror w-full py-2 text-gray-700 mb-1 leading-tight focus:outline-none px-1">
+                            
+                        </textarea>
+                        @error('description')
+                        <div class="text-red-500"><small>{{$message}}</small></div>
+                        @enderror
                     </div>
+                    
+                        <x-button.primary>Edit profile</x-button.primary>
                 </form>
             </div>
         </div>

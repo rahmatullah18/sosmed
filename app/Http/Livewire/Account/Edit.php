@@ -15,11 +15,13 @@ class Edit extends Component
     public $name;
     public $username;
     public $picture;
+    public $description;
 
     public function mount()
     {
         $this->name = auth()->user()->name;
         $this->username = auth()->user()->username;
+        $this->description = auth()->user()->description;
     }
 
     // validasi realtime
@@ -27,8 +29,9 @@ class Edit extends Component
     {
         $this->validateOnly($field, [
                                                 // jika username sdh ada atau usernamenya sendiri
-            'username' => 'min:3|max:25|unique:users,username,' . auth()->id(),
-            'name' => 'min:3|string',
+            'username' => 'required|min:3|max:25|unique:users,username,' . auth()->id(),
+            'name' => 'required|min:3|string',
+            'description' => 'required|min:5',
             'picture' => $this->picture ? 'image|mimes:jpeg,png' : "",
         ]);
     } 
@@ -54,10 +57,12 @@ class Edit extends Component
         auth()->user()->update([
             'name' => $this->name,
             'username' => $this->username,
+            'description' => $this->description,
             'picture' => $picture,
         ]);
-
-        return redirect()->to('/settings');
+        
+        $identifier = auth()->user()->username;
+        return redirect()->route('account.show', $identifier);
     }
 
     public function render()

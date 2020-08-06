@@ -19,7 +19,7 @@
 
         <div class="leading-loose py-2 md:py-0 md:flex justify-between w-full items-center" :class="{ 'hidden' : !open }">
             <div class="md:flex md:items-center py-2 md:py-0">
-                <a href="{{ route('login') }}" class="block text-gray-400 hover:text-white px-4 md:py-2">Timeline</a>
+                <a href="{{ route('timeline') }}" class="block text-gray-400 hover:text-white px-4 md:py-2">Timeline</a>
                 <a href="{{ route('login') }}" class="block text-gray-400 hover:text-white px-4 md:py-2">Explore</a>
             </div>
 
@@ -41,7 +41,8 @@
                         <a href="{{route('settings')}}" class="block text-gray-400 hover:text-white px-4 ">
                             Setting
                         </a>
-                        <a href="" class="block text-gray-400 hover:text-white px-4 ">
+                        <!-- fungsi usernameOrHash didapat dari model user -->
+                        <a href="{{route('account.show', auth()->user()->usernameOrHash() )}}" class="block text-gray-400 hover:text-white px-4 ">
                             Your Profile
                         </a>
                         <a href="" class="block text-gray-400 hover:text-white px-4 ">

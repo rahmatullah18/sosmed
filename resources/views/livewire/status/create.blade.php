@@ -5,7 +5,7 @@
         </div>
         <div class="card-body p-5">
             <form wire:submit.prevent="store">
-                <textarea placeholder="What Your mind?" wire:model="body" class="form-textarea w-full resize-none"></textarea>
+                <textarea placeholder="What Your mind?" wire:model="body" class="form-textarea w-full resize-none border-0 focus:shadow-none"></textarea>
                 @error('body')
                 <div class="text-sm text-red-700">{{$message}}</div>
                 @enderror

@@ -1,25 +1,45 @@
 <div>
-    <div class="bg-gray-700 py-10 -mt-6">
-        <div class="container">
-            <div class="flex items-start">
-                <div class="flex-shrink-0 mr-3">
-                    <img src="{{$user->gravatar()}}" class="w-20 h-20 object-cover object-center rounded">
-                </div>
-                
-                <div>
-                    <h1 class="font-semibold text-xl text-white capitalize mb-1">{{$user->name}}</h1>
+    <div class="py-10 -mt-6 bg-gray-100 ">
+        <div class="container block md:flex md:justify-between">
+            <div class="overflow-hidden">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 mr-3">
+                        <img src="{{$user->gravatar()}}" class="object-cover object-center w-20 h-20 rounded">
+                    </div>
+                    
                     <div>
-                        <h1 class="text-sm text-cool-gray-200 mb-1">{{$user->description}}</h1>
+                        <h1 class="mb-1 text-xl font-semibold capitalize text-cool-gray-900">{{$user->name}}</h1>
+                        <div>
+                            <h1 class="mb-1 text-sm text-cool-gray-700">{{$bio}}</h1>
+                            <div class="mb-2">
+                                <button class=" {{$showBio ? 'block' : 'hidden'}} text-sm text-cool-gray-400 focus:outline-none" wire:click.prevent="readMore">ReadMore</button>
+                                <button class=" {{$showBio ? 'hidden' : 'block'}} text-sm text-cool-gray-400 focus:outline-none" wire:click.prevent="less">Less</button>
+                            </div>
+                        </div>
+        
+                        <div class="mb-6 text-sm text-cool-gray-500">
+                            Joined : {{$user->created_at->format("d F, Y")}}
+                        </div>
                     </div>
-    
-                    <div class="text-sm text-cool-gray-200 mb-6">
-                        Joined : {{$user->created_at->format("d F, Y")}}
-                    </div>
+                </div>
+                <div class="flex justify-center">
                     <!-- button follow -->
                     <livewire:follow.button :user="$user">  
                 </div>
             </div>
+            <div class="w-full mt-5 md:w-1/2">
+                <livewire:follow.statistic :user="$user">
+            </div>
         </div>
     </div>
-    <livewire:follow.statistic :user="$user">
+
+    <div class="container mt-5">
+        <div class="flex justify-center">
+            <div class="w-full md:w-1/2">
+                @foreach($statuses as $status)
+                <livewire:status.block :status="$status" :key="$status->id">
+                @endforeach
+            </div>
+        </div>
+    </div>
 </div>

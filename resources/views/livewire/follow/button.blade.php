@@ -10,7 +10,7 @@
 
     @else
         @auth
-        <a href="{{route('settings')}}" class="inline-flex justify-center  w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+        <a href="{{route('settings')}}" class="inline-flex justify-center  w-full px-4 py-2 text-sm font-medium text-black bg-white border border-transparent rounded-md hover:bg-cool-gray-200 focus:outline-none focus:border-white-700 focus:shadow-none active:bg-white shadow transition duration-150 ease-in-out">
             Edit your profile
         </a>
         @endauth

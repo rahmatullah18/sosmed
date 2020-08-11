@@ -29,9 +29,9 @@ class Edit extends Component
     {
         $this->validateOnly($field, [
                                                 // jika username sdh ada atau usernamenya sendiri
-            'username' => 'required|min:3|max:25|unique:users,username,' . auth()->id(),
-            'name' => 'required|min:3|string',
-            'description' => 'required|min:5',
+            'username' => 'min:3|max:25|unique:users,username,' . auth()->id(),
+            'name' => 'min:3|string',
+            'description' => 'min:5',
             'picture' => $this->picture ? 'image|mimes:jpeg,png' : "",
         ]);
     } 
@@ -39,13 +39,18 @@ class Edit extends Component
     // dari wire:submit.prevent di account.edit 
     public function update()
     {
+        $this->validate([
+            'username' => 'required',
+            'name' => 'required',
+            'description' => 'required'
+        ]);
         
         // jangan lupa tambahkan FILESYSTEM_DRIVER=public di .env
         if($this->picture){
             // delete jika update foto baru
             Storage::delete(auth()->user()->picture);
             // simpan filenya ke storage jika ada file baru 
-            $picture = $this->picture->store('images/profile', 'public');
+            $picture = $this->picture->store('image', 'public');
         }else{
             // jika tidak ada file
             $picture = auth()->user()->picture ?? null;

@@ -9,12 +9,14 @@
                     
                     <div>
                         <h1 class="mb-1 text-xl font-semibold capitalize text-cool-gray-900">{{$user->name}}</h1>
-                        <div>
+                        <div class="">
                             <h1 class="mb-1 text-sm text-cool-gray-700">{{$bio}}</h1>
+                            @if(strlen($bio) >= 120)
                             <div class="mb-2">
                                 <button class=" {{$showBio ? 'block' : 'hidden'}} text-sm text-cool-gray-400 focus:outline-none" wire:click.prevent="readMore">ReadMore</button>
                                 <button class=" {{$showBio ? 'hidden' : 'block'}} text-sm text-cool-gray-400 focus:outline-none" wire:click.prevent="less">Less</button>
                             </div>
+                            @endif
                         </div>
         
                         <div class="mb-6 text-sm text-cool-gray-500">

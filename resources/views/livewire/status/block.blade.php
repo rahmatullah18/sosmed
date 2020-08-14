@@ -10,13 +10,15 @@
                 <a href="{{route('account.show', ['identifier' => $status->user->usernameOrHash()])}}">
                     <div class="font-semibold text-cool-gray-900">{{$status->user->name}}</div>
                 </a>
+                @can('update', $status)
                 <button @click="dropdownIsOpen = !dropdownIsOpen" class="px-1 rounded-full hover:bg-cool-gray-300 focus:outline-none">
                     <svg viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6 chevron-down"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
                 <div :class=" { 'hidden' : !dropdownIsOpen } " class="absolute top-0 right-0 w-48 py-2 mt-10 mr-3 text-sm bg-white border rounded-lg border-cool-gray-200">
-                    <a href="#" class="block px-3 py-1 hover:bg-cool-gray-100">Edit Status</a>
-                    <a href="#" class="block px-3 py-1 hover:bg-cool-gray-100">Delete Status</a>
+                    <a href="{{route('status.edit', $status->hash)}}" class="block px-3 py-1 hover:bg-cool-gray-100">Edit Status</a>
+                    <a href="{{route('status.delete', $status->hash)}}" class="block px-3 py-1 hover:bg-cool-gray-100">Delete Status</a>
                 </div>
+                @endcan
             </div>
             <a href="{{route('status.show', $status->hash)}}" class="text-sm text-cool-gray-800 hover:text-cool-gray-400">{!! nl2br($status->body)!!}</a>
             <div class="text-sm text-cool-gray-400">{{$status->published()}}</div>

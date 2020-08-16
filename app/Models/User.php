@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Timeline\Comment;
 use App\Models\Timeline\status;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -77,5 +78,10 @@ class User extends Authenticatable
     public function statuses()
     {
         return $this->hasMany(status::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
